@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from './scene'
+import { App } from './app'
 
 import './theme/index.css'
 
