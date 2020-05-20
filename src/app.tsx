@@ -38,14 +38,15 @@ export function App() {
     mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1
     mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1
     if (!ctx.current) return
-    ctx.current.raycaster.setFromCamera(mouse.current, ctx.current.camera)
-    const intersects = ctx.current.raycaster.intersectObjects(ctx.current.scene.children, true)
-    intersects.forEach(item => {
-      const tl = new TimelineMax()
-      tl.to(item.object.scale, 1, { x: 2, ease: Expo.easeOut })
-      tl.to(item.object.scale, 0.5, { x: 0.5, ease: Expo.easeOut })
-      tl.to(item.object.position, 0.5, { x: 2, ease: Expo.easeOut })
-      tl.to(item.object.rotation, 0.5, { y: Math.PI * 0.5, ease: Expo.easeOut }, '=-1.5')
+    const { raycaster, camera, scene } = ctx.current
+    raycaster.setFromCamera(mouse.current, camera)
+    const intersects = raycaster.intersectObjects(scene.children, true)
+    intersects.forEach(({ object: { scale, position, rotation } }) => {
+      const tl = new TimelineMax({ yoyo: true })
+      tl.to(scale, 1, { x: 2, ease: Expo.easeOut })
+      tl.to(position, 0.5, { x: 2, ease: Expo.easeOut })
+      tl.to(scale, 0.5, { x: 0.5, ease: Expo.easeOut })
+      tl.to(rotation, 0.5, { y: Math.PI * 0.5, ease: Expo.easeOut }, '=-1.5')
     })
   }, [])
 
