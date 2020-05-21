@@ -2,16 +2,13 @@ import React, { useRef, useMemo, useCallback, MouseEvent } from 'react'
 import { Color } from 'three'
 import { Canvas, CanvasContext } from 'react-three-fiber'
 import { TimelineMax, Expo } from 'gsap'
-
-type ThreeArray = [number, number, number]
+import { ThreeArray } from 'src/interfaces'
 
 const LIGHT_COLOR = new Color(0xffffff)
 const LIGHT1_POSITION: ThreeArray = [0, 0, 0]
 const LIGHT2_POSITION: ThreeArray = [0, 0, 25]
-const MESH_COLOR = new Color(0xf7f7f7)
-const GEOMETRY_ARGS: ThreeArray = [1, 1, 1]
 
-export function App() {
+export function Cubes1Page() {
   const mouse = useRef({ x: 0, y: 0 })
   const ctx = useRef<CanvasContext>()
   const items = useMemo(
@@ -42,7 +39,7 @@ export function App() {
     raycaster.setFromCamera(mouse.current, camera)
     const intersects = raycaster.intersectObjects(scene.children, true)
     intersects.forEach(({ object: { scale, position, rotation } }) => {
-      const tl = new TimelineMax({ yoyo: true })
+      const tl = new TimelineMax()
       tl.to(scale, 1, { x: 2, ease: Expo.easeOut })
       tl.to(position, 0.5, { x: 2, ease: Expo.easeOut })
       tl.to(scale, 0.5, { x: 0.5, ease: Expo.easeOut })
@@ -58,6 +55,9 @@ export function App() {
     </Canvas>
   )
 }
+
+const GEOMETRY_ARGS: ThreeArray = [1, 1, 1]
+const MESH_COLOR = new Color(0xf7f7f7)
 
 function Box({ position }: { position: ThreeArray }) {
   return (

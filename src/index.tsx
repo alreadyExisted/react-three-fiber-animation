@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from './app'
+import { BrowserRouter } from 'react-router-dom'
+import { Pages } from './pages'
 
 import './theme/index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Pages />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 )
