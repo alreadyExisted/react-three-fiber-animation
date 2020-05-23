@@ -2,4 +2,4 @@
 
 Lib: https://github.com/react-spring/react-three-fiber
 
-1. Cubes transformation
+Demo: https://codesandbox.io/s/github/alreadyExisted/react-three-fiber-animation
