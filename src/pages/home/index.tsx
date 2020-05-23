@@ -13,6 +13,9 @@ export function HomePage() {
         <li>
           <NavLink to="/cubes2">Cubes2</NavLink>
         </li>
+        <li>
+          <NavLink to="/nude-model">Nude Model (+18)</NavLink>
+        </li>
       </ol>
     </div>
   )
